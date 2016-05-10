@@ -71,12 +71,14 @@ class GraphLogger(BaseLogger):
             key_parameter.append(key)
         key_parameter.sort()
         for key in key_parameter:
+            value_parameter.append(math.pow(self.xiSamples[key], 2)*p/(2 * self.graph.get_number_of_edges()))
         plt.plot(key_parameter, value_parameter, 'ro', markersize=4, color='b')
 
         key_parameter = []
         value_parameter = []
         for key, value in self.e1iSamples.iteritems():
             key_parameter.append(key)
+            value_parameter.append(value*1.0/self.graph.get_number_of_edges())
         plt.plot(key_parameter, value_parameter, 'ro', markersize=4, color='r')
 
         plt.ylabel('Ei and Xi^2*p/2')
@@ -85,20 +87,24 @@ class GraphLogger(BaseLogger):
         plt.show()
 
     def draw_samples_graph2(self, p):
+        # E2i and Si+1 * Xi * p
         key_parameter = []
         value_parameter = []
         for key, value in self.xiSamples.iteritems():
             key_parameter.append(key)
         key_parameter.sort()
         for key in key_parameter:
+            value_parameter.append(self.si1Samples[key]*self.xiSamples[key]*p / self.graph.get_number_of_edges())
         plt.plot(key_parameter, value_parameter, 'ro', markersize=4, color='b')
 
         key_parameter = []
         value_parameter = []
         for key, value in self.e2iSamples.iteritems():
             key_parameter.append(key)
+            value_parameter.append(value*1.0/self.graph.get_number_of_edges())
         plt.plot(key_parameter, value_parameter, 'ro', markersize=4, color='r')
 
+        plt.ylabel('E2i and Si+1 * Xi * p')
         plt.grid(True)
         plt.legend()
         plt.show()
