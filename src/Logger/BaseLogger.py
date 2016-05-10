@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 from LogEntity import LogEntity
 
 
-class BaseLogger:
+class BaseLogger(object):
 
     servedNumber = 0
     blockedNumber = 0
